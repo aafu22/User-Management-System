@@ -8,12 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 require("dotenv").config();
 
-mongoose.connect(process.env.MONGO_URI, {
-  connectTimeoutMS: 30000,
-  socketTimeoutMS: 45000,
-})
-.then(() => console.log("✅ Connected to MongoDB Atlas"))
-.catch(err => console.error("❌ MongoDB Connection Error:", err));
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 

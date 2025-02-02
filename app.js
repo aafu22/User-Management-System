@@ -6,11 +6,15 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/mydb', { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true 
-});
+const mongoose = require("mongoose");
+require("dotenv").config();
+
+mongoose.connect(process.env.MONGO_URI, {
+  connectTimeoutMS: 30000,
+  socketTimeoutMS: 45000,
+})
+.then(() => console.log("✅ Connected to MongoDB Atlas"))
+.catch(err => console.error("❌ MongoDB Connection Error:", err));
 
 // Define User Schema
 const userSchema = new mongoose.Schema({

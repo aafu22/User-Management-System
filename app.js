@@ -6,7 +6,6 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const mongoose = require("mongoose");
 require("dotenv").config();
 
 mongoose.connect(process.env.MONGO_URI, {
